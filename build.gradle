@@ -1,0 +1,50 @@
+buildscript {
+  repositories {
+    maven { url '' }
+    //mavenCentral()
+  }
+  dependencies {
+    classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8"
+  }
+}
+
+apply plugin: "org.sonarqube"
+
+sonarqube {
+  properties {
+    property "sonar.sourceEncoding", "UTF-8"
+  }
+}
+
+allprojects {
+	
+	repositories {
+  		maven { url '' }
+	} 
+	
+	apply plugin: 'java'
+	apply plugin: 'jacoco'
+
+	jacoco {
+    	toolVersion = "0.8.5"
+	}
+}
+
+apply from: './subprojects.gradle'
+
+task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
+    dependsOn = subprojects.test
+    sourceDirectories.from = subprojects.sourceSets.main.allSource.srcDirs
+    additionalSourceDirs.from = subprojects.sourceSets.main.allSource.srcDirs
+    classDirectories.from = subprojects.sourceSets.main.output
+    
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = false
+    }
+    onlyIf = {
+        true
+    }
+
+}

@@ -1,0 +1,38 @@
+subprojects {
+    apply plugin: "jacoco"
+    apply plugin: "java"
+    apply plugin: 'eclipse'
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+
+    group = 'co.com.bancolombia.declaraciones'
+
+    repositories {
+        mavenCentral()
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
+
+
+    jacocoTestReport {
+        dependsOn tasks.test
+        sourceSets sourceSets.main
+
+        reports {
+            html.enabled = true
+            csv.enabled true
+            xml.enabled true
+        }
+    }
+
+    tasks.check.dependsOn tasks.jacocoTestReport
+    rootProject.tasks.jacocoTestReport.dependsOn tasks.test
+
+    test {
+        useJUnitPlatform()
+    }
+}

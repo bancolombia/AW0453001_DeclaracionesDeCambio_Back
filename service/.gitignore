@@ -1,0 +1,55 @@
+############### Mac OSX ###############
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+################# STS #################
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+.c9/
+*.launch
+*.sublime-workspace
+/bin/*
+
+############ IntelliJ IDEA ############
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+############## NetBeans ###############
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+################ Java #################
+*.jar
+*.war
+*.ear
+*.class
+
+################ Logs #################
+*.log
+
+############## Vs Code ################
+.vscode/
+
+############### Gradle ################
+.gradle/*
+.gradle
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+############### JMeter ################
+test/*.jtl
